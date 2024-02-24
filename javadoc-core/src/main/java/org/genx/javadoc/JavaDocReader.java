@@ -59,7 +59,8 @@ public class JavaDocReader {
         commandList.add("-encoding");
         commandList.add("utf-8");
         commandList.add("-classpath");
-        commandList.add(StringUtils.join(compilePaths, ";"));
+        boolean windows = System.getProperty("os.name").toLowerCase().contains("windows");
+        commandList.add(StringUtils.join(compilePaths, windows ? ";" : ":"));
 
         List<File> list = new ArrayList(1024);
         for (File sourceDir : sourceDirs) {
